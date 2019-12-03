@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean name="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.cj.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://localhost/mydb</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>test</value>
+		</property>
+	</bean>
+
+	<bean name="jdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+
+	<bean name="passengerDAOImpl"
+		class="in.co.javacoder.springJdbcAssignment.dao.impl.PassengerDAOImpl">
+		<property name="jdbcTemplate">
+			<ref bean="jdbcTemplate" />
+		</property>
+	</bean>
+
+
+	<bean name="p1"
+		class="in.co.javacoder.springJdbcAssignment.dto.Passenger" p:id="1"
+		p:firstName="Anees" p:lastName="Fathima" />
+	
+	<bean name="p2"
+		class="in.co.javacoder.springJdbcAssignment.dto.Passenger" p:id="2"
+		p:firstName="Mohamed" p:lastName="Arif" />
+	
+	<bean name="p3"
+		class="in.co.javacoder.springJdbcAssignment.dto.Passenger" p:id="3"
+		p:firstName="Jameelun" p:lastName="Nisha" />
+		
+	<bean name="p2u"
+		class="in.co.javacoder.springJdbcAssignment.dto.Passenger" p:id="2"
+		p:firstName="Mohamed" p:lastName="Ismail Arif" />
+
+</beans>
